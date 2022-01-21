@@ -13,10 +13,15 @@ export class LocationComponent implements OnInit {
   @Input() locationValue: Location = {location: ''};
 
   locations?: Location[];
+  currentLocationId?: number;
 
   constructor(
     private locationService: LocationService
-  ) { }
+  ) {
+    setTimeout(() => {
+      this.currentLocationId = this.locationValue.id;
+    }, 50);
+  }
 
   ngOnInit(): void {
     this.retrieveLocation();
@@ -32,7 +37,8 @@ export class LocationComponent implements OnInit {
       });
   }
 
-  sendLocation(location: Location){
+  sendLocation(){
+    let location = this.locations?.find(l => l.id == this.currentLocationId);
     this.locationSelectedEvent.emit(location)
   }
 

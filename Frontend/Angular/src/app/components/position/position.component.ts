@@ -13,10 +13,15 @@ export class PositionComponent implements OnInit {
   @Input() positionValue: Position = {position: ''};
 
   positions?: Position[];
+  currentPositionId?: number;
 
   constructor(
     private positionService: PositionService
-  ) { }
+  ) {
+    setTimeout(() => {
+      this.currentPositionId = this.positionValue?.id;
+    }, 50);
+  }
 
   ngOnInit(): void {
     this.retrievePositions();
@@ -32,8 +37,9 @@ export class PositionComponent implements OnInit {
       });
   }
 
-  sendPosition(position: Position){
-    this.positionSelectedEvent.emit(position)
+  sendPosition(){
+    let position = this.positions?.find(p => p.id == this.currentPositionId);
+    this.positionSelectedEvent.emit(position);
   }
 
 }

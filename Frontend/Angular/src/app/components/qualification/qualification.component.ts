@@ -13,10 +13,15 @@ export class QualificationComponent implements OnInit {
   @Input() qualificationValue: Qualification = {qualification: ''};
 
   qualifications?: Qualification[];
+  currentQualificationId?: number;
 
   constructor(
     private qualificationService: QualificationService
-  ) { }
+  ) {
+    setTimeout(() => {
+      this.currentQualificationId = this.qualificationValue?.id;
+    }, 50);
+  }
 
   ngOnInit(): void {
     this.retrieveQualification();
@@ -32,7 +37,8 @@ export class QualificationComponent implements OnInit {
       });
   }
 
-  sendQualification(qualification: Qualification){
+  sendQualification(){
+    let qualification = this.qualifications?.find(q => q.id == this.currentQualificationId);
     this.qualificationSelectedEvent.emit(qualification)
   }
 

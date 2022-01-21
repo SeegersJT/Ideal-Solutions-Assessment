@@ -1,5 +1,5 @@
 <label for="skillId">Skill type</label>
-<select class="form-control">
-    <option selected disabled>Select skill type</option>
-    <option  *ngFor="let skill of getSkills(); let i = index" [value]="skill.id" (click)="sendSkill(skill)">{{ skill.skill }}</option>
+<select class="form-control" [(ngModel)]="currentSkillId" (ngModelChange)="sendSkill()">
+    <option selected disabled value=undefined>Select skill type</option>
+    <option  *ngFor="let skill of getSkills()" [value]=skill.id>{{ skill.skill }}</option>
 </select>

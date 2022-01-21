@@ -11,6 +11,7 @@ export class RatingComponent implements OnInit {
 
   @Output() ratingSelectedEvent = new EventEmitter<Rating>();
   ratings?: Rating[];
+  currentRatingId?: number;
 
   constructor(
     private ratingService: RatingService,
@@ -30,8 +31,9 @@ export class RatingComponent implements OnInit {
       });
   }
 
-  sendRating(rating: Rating){
-    this.ratingSelectedEvent.emit(rating)
+  sendRating(){
+    let rating = <Rating> this.ratings?.find(s => s.id == this.currentRatingId);
+    this.ratingSelectedEvent.emit(rating);
   }
 
 }

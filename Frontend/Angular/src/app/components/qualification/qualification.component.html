@@ -1,5 +1,5 @@
 <label for="highestQualificationId">Highest Qualification</label>
-<select class="form-control">
-    <option selected disabled>Select highest qualification</option>
-    <option *ngFor="let qualification of qualifications" [value]="qualification.id" [selected]="qualificationValue.id === qualification.id" (click)="sendQualification(qualification)">{{ qualification.qualification }}</option>
+<select class="form-control" [(ngModel)]="currentQualificationId" (ngModelChange)="sendQualification()">
+    <option selected disabled value=undefined>Select highest qualification</option>
+    <option *ngFor="let qualification of qualifications" [value]="qualification.id">{{ qualification.qualification }}</option>
 </select>

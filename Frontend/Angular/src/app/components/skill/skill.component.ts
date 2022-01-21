@@ -15,6 +15,7 @@ export class SkillComponent implements OnInit {
   
   skills?: Skill[];
   selectedValue?: string;
+  currentSkillId?: number;
   
   constructor(
     private skillservice: SkillService
@@ -34,21 +35,10 @@ export class SkillComponent implements OnInit {
     });
   }
   
-  sendSkill(skill: Skill){
-    if(!skill){
-      return
-    }
+  sendSkill(){
+    let skill = <Skill> this.skills?.find(s => s.id == this.currentSkillId);
     this.skillSelectedEvent.emit(skill);
   }
-  
-  clearSelection(){
-    let t = this
-    setTimeout(() => {
-      t.selectedValue = undefined;
-    }, 50);
-  }
-
-  @Output() clearSelector = this.clearSelection;
 
   getSkills(): Skill[] | undefined{
     if(typeof this.selectedSkill == "function"){

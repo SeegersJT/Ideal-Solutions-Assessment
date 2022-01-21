@@ -1,5 +1,13 @@
 # Angular
 
+## Setup Instructions
+- Make sure NodeJS version 14.15 or later is installed
+- Make sure Angular is installed. If it isn't, run `npm install -g @angular/cli`
+- Install all Node dependencies using `npm i`
+- Run the application using `ng serve --port=8081`
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
 ## Development server

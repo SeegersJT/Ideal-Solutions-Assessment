@@ -91,7 +91,6 @@ export class JoblistingDetailsComponent implements OnInit {
       ratingId: this.selectedRating.id
     })
     this.selectedSkill = undefined;
-    this.childen?.forEach(c => c.clearSelection());
   }
 
   hasSelectedSkill = (skill?: Skill): boolean => {
@@ -115,6 +114,7 @@ export class JoblistingDetailsComponent implements OnInit {
     this.joblistingService.get(id)
       .subscribe({
         next: (data) => {
+          console.log(this);
           this.currentJoblisting = data;
           this.getPositionById(this.currentJoblisting.positionId);
           this.getQualificationById(this.currentJoblisting.desiredQualificationId);
@@ -193,28 +193,16 @@ export class JoblistingDetailsComponent implements OnInit {
     .subscribe({
       next: (data) => {
         this.skillmaps = data;
-        this.skillmaps.forEach((each, i) => {
-          setTimeout(() => {
-            this.skillService.get(each.skillId)
-            .subscribe({
-              next: (data) => {
-                this.selectedSkill = data;
-              },
-              error: (e) => console.error(e)
-            });
-
-            this.ratingService.get(each.ratingId)
-            .subscribe({
-              next: (data) => {
-                this.selectedRating = data;
-              },
-              error: (e) => console.error(e)
-            });
-
-            setTimeout(() => {
-              this.joblistingSkills.push(new joblistingSkillMap(this.selectedSkill, this.selectedRating))
-            }, 100);
-          },i * 150);
+        this.skillmaps.map(async sm => {
+          let [skill, rating] = await Promise.all([
+            new Promise(resolve => {
+              this.skillService.get(sm.skillId).subscribe({next: resolve});
+            }),
+            new Promise(resolve => {
+              this.ratingService.get(sm.ratingId).subscribe({next: resolve});
+            })
+          ]);
+          this.joblistingSkills.push(new joblistingSkillMap(<Skill>skill, <Rating>rating))
         })
       },
       error: (e) => console.error(e)

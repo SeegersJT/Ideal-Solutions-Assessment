@@ -66,7 +66,6 @@ export class AddJoblistingComponent implements OnInit {
     if(!this.selectedSkill || !this.selectedRating) return
     this.joblistingSkills.push(new joblistingSkillMap(this.selectedSkill, this.selectedRating));
     this.selectedSkill = undefined;
-    this.childen?.forEach(c => c.clearSelection());
   }
 
   removeJoblistingSkill($event: any): void {

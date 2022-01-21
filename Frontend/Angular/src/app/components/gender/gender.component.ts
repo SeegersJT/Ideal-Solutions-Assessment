@@ -13,10 +13,15 @@ export class GenderComponent implements OnInit {
   @Input() genderValue: Gender = {gender: ''};
   
   genders?: Gender[];
+  currentGenderId?: number;
 
   constructor(
     private genderService: GenderService,
-  ) { }
+  ) {
+    setTimeout(() => {
+      this.currentGenderId = this.genderValue.id;
+    }, 50);
+  }
 
   ngOnInit(): void {
     this.retrieveGenders();
@@ -32,8 +37,9 @@ export class GenderComponent implements OnInit {
       });
   }
 
-  sendGender(gender: Gender){
-    this.genderSelectedEvent.emit(gender)
+  sendGender(){
+    let gender = <Gender> this.genders?.find(g => g.id == this.currentGenderId);
+    this.genderSelectedEvent.emit(gender);
   }
 
 }

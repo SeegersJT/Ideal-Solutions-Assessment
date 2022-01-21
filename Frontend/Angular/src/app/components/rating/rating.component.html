@@ -1,5 +1,5 @@
 <label for="ratingId">Rating rating</label>
-<select class="form-control">
-    <option selected disabled>Select rating type</option>
-    <option *ngFor="let rating of ratings" [value]="rating.id" (click)="sendRating(rating)">{{ rating.rating }}</option>
+<select class="form-control" [(ngModel)]="currentRatingId" (ngModelChange)="sendRating()">
+    <option selected disabled value=undefined>Select rating type</option>
+    <option *ngFor="let rating of ratings" [value]=rating.id>{{ rating.rating }}</option>
 </select>

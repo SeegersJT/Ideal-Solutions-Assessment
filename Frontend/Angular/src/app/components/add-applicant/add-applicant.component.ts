@@ -69,7 +69,6 @@ export class AddApplicantComponent implements OnInit {
     if(!this.selectedSkill || !this.selectedRating) return
     this.applicantSkills.push(new applicantSkillMap(this.selectedSkill, this.selectedRating));
     this.selectedSkill = undefined;
-    this.childen?.forEach(c => c.clearSelection());
   }
 
   removeApplicantSkill($event: any): void {
@@ -94,6 +93,8 @@ export class AddApplicantComponent implements OnInit {
       desiredLocationId: this.selectedLocation?.id,
       salary: this.applicant.salary,
     };
+
+    console.log(data);
 
     this.applicantService.create(data)
       .subscribe({

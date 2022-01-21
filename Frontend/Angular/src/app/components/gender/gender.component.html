@@ -1,0 +1,5 @@
+<label for="genderId">Gender</label>
+<select class="form-control">
+    <option selected disabled>Select gender</option>
+    <option *ngFor="let gender of genders" [value]="gender.id" [selected]="genderValue.id === gender.id" (click)="sendGender(gender)">{{ gender.gender }}</option>
+</select>

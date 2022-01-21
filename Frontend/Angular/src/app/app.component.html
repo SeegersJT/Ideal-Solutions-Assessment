@@ -1,0 +1,25 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Ideal Solution Assessment</a>
+    <div class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="applicants" class="nav-link">Applicants</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="joblistings" class="nav-link">Job Listings</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add/applicant" class="nav-link">Add Applicants</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add/joblisting" class="nav-link">Add Job Listing</a>
+      </li>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

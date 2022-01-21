@@ -1,0 +1,5 @@
+<label for="positionId">Position</label>
+<select class="form-control">
+    <option selected disabled>Select position</option>
+    <option *ngFor="let position of positions" [value]="position.id" [selected]="positionValue.id === position.id" (click)="sendPosition(position)">{{ position.position }}</option>
+</select>

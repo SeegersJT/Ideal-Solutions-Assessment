@@ -1,0 +1,851 @@
+{
+	"info": {
+		"_postman_id": "846e802c-759b-4c4a-8648-175d06e59914",
+		"name": "Ideal Solutions Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Applicants",
+			"item": [
+				{
+					"name": "GET all applicants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/applicants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"applicants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get applicant by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/applicant/94",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"applicant",
+								"94"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get applicant relevant to job listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/applicants?joblistingId=131",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"applicants"
+							],
+							"query": [
+								{
+									"key": "joblistingId",
+									"value": "131"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new applicant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Hanno\",\r\n    \"lastName\" : \"Seegers\",\r\n    \"mobile\" : \"+27 61 546 2560\",\r\n    \"email\" : \"seegersmn@outlook.com\",\r\n    \"genderId\" : 2,\r\n    \"positionId\" : 1,\r\n    \"highestQualificationId\" : 6,\r\n    \"desiredLocationId\" : 8,\r\n    \"salary\" : 50000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/applicant",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"applicant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit applicant by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Dian\",\r\n    \"lastName\" : \"Jonker\",\r\n    \"mobile\" : \"+27 61 546 2560\",\r\n    \"email\" : \"seegersmn@outlook.com\",\r\n    \"genderId\" : 2,\r\n    \"positionId\" : 1,\r\n    \"highestQualificationId\" : 6,\r\n    \"desiredLocationId\" : 8,\r\n    \"dateCreated\" : \"2020-01-19\",\r\n    \"dateUpdated\" : \"2020-01-19\",\r\n    \"salary\" : 50000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/applicant/32",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"applicant",
+								"32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove all applicants",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/applicants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"applicants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove applicant by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/applicant/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"applicant",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Job Listings",
+			"item": [
+				{
+					"name": "Get all job listings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/joblistings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"joblistings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get job listing by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/joblisting/30",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"joblisting",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get job listings relevant to applicant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/joblistings?applicantId=130",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"joblistings"
+							],
+							"query": [
+								{
+									"key": "applicantId",
+									"value": "130"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new job listing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\" : \"Ideal Solution\",\r\n    \"companyDescription\" : \"Awesome Tech company\",\r\n    \"positionId\" : 1,\r\n    \"positionDescription\" : \"Really Cool java stuff\",\r\n    \"desiredQualificationId\" : 1,\r\n    \"locationId\" : 8,\r\n    \"salary\" : 15000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/joblisting",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"joblisting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit job listing by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\" : \"Ideal Solutions\",\r\n    \"companyDescription\" : \"Awesome Tech company\",\r\n    \"positionId\" : 2,\r\n    \"positionDescription\" : \"Really Cool java stuff\",\r\n    \"desiredQualificationId\" : 1,\r\n    \"locationId\" : 8,\r\n    \"salary\" : 20000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/joblisting/30",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"joblisting",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove all job listings",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/joblistings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"joblistings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove job listing by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/joblisting/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"joblisting",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Skill Map",
+			"item": [
+				{
+					"name": "Applicants",
+					"item": [
+						{
+							"name": "Get all skillmaps by applicants",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/skillmaps?context=applicant",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"skillmaps"
+									],
+									"query": [
+										{
+											"key": "context",
+											"value": "applicant"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all skillmaps by applicant id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/skillmaps?context=applicant&contextId=121",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"skillmaps"
+									],
+									"query": [
+										{
+											"key": "context",
+											"value": "applicant"
+										},
+										{
+											"key": "contextId",
+											"value": "121"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Job Listings",
+					"item": [
+						{
+							"name": "Get all skillmaps by job listings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/skillmaps?context=joblisting",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"skillmaps"
+									],
+									"query": [
+										{
+											"key": "context",
+											"value": "joblisting"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all skillmaps by job listing id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/skillmaps?context=joblisting&contextId=119",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"skillmaps"
+									],
+									"query": [
+										{
+											"key": "context",
+											"value": "joblisting"
+										},
+										{
+											"key": "contextId",
+											"value": "119"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get all skillmaps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/skillmaps",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"skillmaps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get skillmap by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/skillmap/27",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"skillmap",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new skillmap",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"context\" : \"applicant\",\r\n    \"contextId\" : 191,\r\n    \"skillId\" : 1,\r\n    \"ratingId\" :1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/skillmap",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"skillmap"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit skillmap by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"context\" : \"applicant\",\r\n    \"contextId\" : 57,\r\n    \"skillId\" : 2,\r\n    \"ratingId\" : 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/skillmap/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"skillmap",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove all skillmaps",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/skillmaps",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"skillmaps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove skillmap by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/skillmap/11",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"skillmap",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ratings",
+			"item": [
+				{
+					"name": "Get all ratings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ratings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get rating by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/rating/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"rating",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Skills",
+			"item": [
+				{
+					"name": "Get all skills",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/skills",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"skills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get skill by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/skill/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"skill",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Qualifications",
+			"item": [
+				{
+					"name": "Get all qualifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/qualifications",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"qualifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get qualification by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/qualification/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"qualification",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Positions",
+			"item": [
+				{
+					"name": "Get all positions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/positions",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"positions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get position by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/position/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"position",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Locations",
+			"item": [
+				{
+					"name": "Get all Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/locations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get location by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/location/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"location",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genders",
+			"item": [
+				{
+					"name": "Get all Genders only (3) not (52)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/genders",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"genders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get gender by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/gender/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"gender",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:8080"
+		}
+	]
+}

@@ -1,0 +1,197 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentJoblisting.id">
+      <h4>Joblisting details</h4>
+      <div>
+        <label><strong>Company name:</strong></label> {{ currentJoblisting.companyName }}
+      </div>
+      <div>
+        <label><strong>Company Description:</strong></label> {{ currentJoblisting.companyDescription }}
+      </div>
+      <div>
+        <label><strong>Position:</strong></label> {{ position.position }}
+      </div>
+      <div>
+        <label><strong>Position Description:</strong></label> {{ currentJoblisting.positionDescription }}
+      </div>
+      <div>
+        <label><strong>Desired Qualification:</strong></label> {{ qualification.qualification }}
+      </div>
+      <div>
+        <label><strong>Location:</strong></label> {{ location.location }}
+      </div>
+      <div>
+        <label><strong>Salary:</strong></label> R{{ currentJoblisting.salary }}
+      </div>
+      <!-- <span class="badge badge-pill badge-secondary" title="1 - Novice">HTML</span>&nbsp;
+      <span class="badge badge-pill badge-success" title="2 - Advanced Beginner">CSS</span>&nbsp;
+      <span class="badge badge-pill badge-primary" title="3 - Competent">C#</span>&nbsp;
+      <span class="badge badge-pill badge-warning" title="4 - Proficient">JavaScript</span>&nbsp;
+      <span class="badge badge-pill badge-danger" title="5 - Expert">Kotlin</span>&nbsp;
+      <span class="badge badge-pill badge-info" title="Optional">admin</span>&nbsp; -->
+      <a
+        class="badge badge-warning"
+        routerLink="/joblisting/{{ currentJoblisting.id }}"
+      >
+        Edit
+      </a>
+    </div>
+  
+    <div *ngIf="!currentJoblisting">
+      <br />
+      <p>Please click on a Joblisting...</p>
+    </div>
+
+    <div *ngIf="applicantsStatus">
+      <br />
+      <h4>Relavant Applicant List</h4>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let applicant of applicants; let i = index"
+            routerLink="/joblisting/{{applicant.id}}"
+          >
+            {{ applicant.firstName }} {{ applicant.lastName }} <br>
+            Mobile: <a href="tel:{{ applicant.mobile }}" target="_blank"> {{ applicant.mobile }}</a> <br>
+            Email: <a href="mailto:{{ applicant.email }}" target="_blank"> {{ applicant.email }}</a> <br>
+            Desired Position: {{ applicant.positionId }} <br>
+            Highest Qualification: {{ applicant.highestQualificationId }} <br>
+            Desired Location: {{ applicant.desiredLocationId }} <br>
+            Salary: R{{ applicant.salary }} <br>
+            <button
+              type="submit"
+              class="badge badge-success mb-2"
+              routerLink="/applicant/{{applicant.id}}"
+            >
+              View
+            </button>
+          </li>
+        </ul>
+    </div>
+    <div *ngIf="!applicantsStatus  && currentJoblisting.id">
+      <br />
+      <h4>No relavant Joblistings found</h4>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentJoblisting.id" class="edit-form">
+      <div class="list row">
+        <div class="col-md-6">
+          <h4>Joblisting</h4>
+          <form>
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="companyName"
+                  required
+                  [(ngModel)]="currentJoblisting.companyName"
+                  name="companyName"
+                />
+              </div>
+        
+              <div class="form-group">
+                  <label for="companyDescription">Company Description</label>
+                  <input
+                      type="text"
+                      class="form-control"
+                      id="companyDescription"
+                      required
+                      [(ngModel)]="currentJoblisting.companyDescription"
+                      name="companyDescription"
+                  />
+              </div>
+      
+              <div class="form-group">
+                <app-position [positionValue]="positionSelect" (positionSelectedEvent)="receivePositionSelectedEvent($event)"></app-position>
+              </div>
+      
+              <div class="form-group">
+                  <label for="positionDescription">Position Description</label>
+                  <input
+                      type="text"
+                      class="form-control"
+                      id="positionDescription"
+                      required
+                      [(ngModel)]="currentJoblisting.positionDescription"
+                      name="positionDescription"
+                  />
+              </div>
+      
+              <div class="form-group">
+                <app-qualification [qualificationValue]="qualificationSelect" (qualificationSelectedEvent)="receiveQualificationSelectedEvent($event)"></app-qualification>
+              </div>
+      
+              <div class="form-group">
+                <app-location [locationValue]="locationSelect" (locationSelectedEvent)="receiveLocationSelectedEvent($event)"></app-location>
+              </div>
+      
+              <div class="form-group">
+                  <label for="salary">Salary</label>
+                  <input
+                      type="text"
+                      class="form-control"
+                      id="salary"
+                      required
+                      [(ngModel)]="currentJoblisting.salary"
+                      name="salary"
+                  />
+              </div>
+          </form>
+        </div>
+        <div class="col-md-6"> 
+          <h1 align="center">Job Listing Skills</h1>
+          <br>
+          <div class="list row" >
+              <div class="col-md-6">
+                  <div class="form-group" align="center">
+                      <app-skill 
+                      [selectedSkill]="hasSelectedSkill" 
+                      (skillSelectedEvent)="receiveSkillSelectedEvent($event)"></app-skill>
+                  </div>
+              </div>
+          
+              <div class="col-md-6">
+                  <div class="form-group" align="center">
+                      <app-rating (ratingSelectedEvent)="receiveRatingSelectedEvent($event)"></app-rating>
+                  </div>
+              </div>
+
+          </div>
+          <div class="col-md-12">
+          <button (click)="addJoblistingSkill()" class="btn btn-success">Add</button>
+          </div>
+          <div class="col-md-12">
+              <div *ngFor="let joblistingSkill of joblistingSkills" class="alert alert-info alert-dismissible fade show" role="alert">
+                  <strong>{{joblistingSkill.skill?.skill}}</strong> ({{joblistingSkill.rating?.rating}})
+                  <button 
+                      [attr.data-skill]="joblistingSkill.skill?.id" 
+                      [attr.data-rating]="joblistingSkill.rating?.id" 
+                      type="button" 
+                      class="close" 
+                      data-dismiss="alert" 
+                      aria-label="Close"
+                      (click)="removeJoblistingSkill($event)">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+          </div>
+        </div>
+      </div>
+  
+      <button class="badge badge-danger mr-2" (click)="deleteJoblisting()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateJoblisting()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  </ng-template>
+  

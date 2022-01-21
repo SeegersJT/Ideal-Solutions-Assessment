@@ -1,0 +1,44 @@
+<div *ngIf="applicants">
+  <div class="list row">
+      <div class="col-md-6">
+        <h4>Applicants List</h4>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let applicant of applicants; let i = index"
+            [class.active]="i == currentIndex"
+            (click)="setActiveApplicant(applicant, i)"
+          >
+            {{ applicant.firstName }}
+            {{ applicant.lastName }}
+            <!-- add some extra info -->
+          </li>
+        </ul>
+    
+        <button class="m-3 btn btn-sm btn-danger" (click)="removeAllApplicants()">
+          Remove All
+        </button>
+      </div>
+      <div class="col-md-6">
+        <app-applicant-details
+          [viewMode]="true"
+          [currentApplicant]="currentApplicant"
+          [joblistings]="joblistings"
+          [joblistingsStatus]="joblistingsStatus"
+          [gender]="gender"
+          [position]="position"
+          [qualification]="qualification"
+          [location]="location"
+        ></app-applicant-details>
+      </div>
+  </div>
+</div>
+<div *ngIf="!applicants">
+  <div class="list row">
+    <div class="col-md-12">
+      <h1>There are no available applicants...</h1>
+      <p>Try adding more applicants at the Add Applicants page.</p>
+    </div>
+  </div>
+</div>
+  

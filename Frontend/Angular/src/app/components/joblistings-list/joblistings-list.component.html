@@ -1,0 +1,42 @@
+<div *ngIf="joblistings">
+  <div class="list row">
+      <div class="col-md-6">
+        <h4>Joblistings List</h4>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let joblisting of joblistings; let i = index"
+            [class.active]="i == currentIndex"
+            (click)="setActiveJoblisting(joblisting, i)"
+          >
+            {{ joblisting.companyName }} 
+            <!-- add some extra info -->
+          </li>
+        </ul>
+    
+        <button class="m-3 btn btn-sm btn-danger" (click)="removeAllJoblistings()">
+          Remove All
+        </button>
+      </div>
+      <div class="col-md-6">
+        <app-joblisting-details
+        [viewMode]="true"
+        [currentJoblisting]="currentJoblisting"
+        [applicants]="applicants"
+        [applicantsStatus]="applicantsStatus"
+        [position]="position"
+        [qualification]="qualification"
+        [location]="location"
+        ></app-joblisting-details>
+      </div>
+  </div>
+</div>
+<div *ngIf="!joblistings">
+  <div class="list row">
+    <div class="col-md-12">
+      <h1>There are no available joblistings...</h1>
+      <p>Try adding more joblistings at the Add Joblistings page.</p>
+    </div>
+  </div>
+</div>
+  

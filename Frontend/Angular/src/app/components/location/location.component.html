@@ -1,0 +1,5 @@
+<label for="desiredLocationId">Desired Location</label>
+<select class="form-control">
+    <option selected disabled>Select desired location</option>
+    <option *ngFor="let location of locations" [value]="location.id" [selected]="locationValue.id === location.id" (click)="sendLocation(location)">{{ location.location }}</option>
+</select>

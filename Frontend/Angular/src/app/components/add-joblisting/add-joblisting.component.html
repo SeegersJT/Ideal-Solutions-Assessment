@@ -1,0 +1,114 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="list row">
+          <div class="col-md-6">
+            <h4>Joblisting</h4>
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input
+                placeholder="Enter company name"
+                type="text"
+                class="form-control"
+                id="companyName"
+                required
+                [(ngModel)]="joblisting.companyName"
+                name="companyName"
+              />
+            </div>
+            <div class="form-group">
+                <label for="companyDescription">Company Description</label>
+                <input
+                    placeholder="Enter company description"
+                    type="text"
+                    class="form-control"
+                    id="companyDescription"
+                    required
+                    [(ngModel)]="joblisting.companyDescription"
+                    name="companyDescription"
+                />
+            </div>
+            <div class="form-group">
+                <app-position (positionSelectedEvent)="receivePositionSelectedEvent($event)"></app-position>
+            </div>
+            <div class="form-group">
+                <label for="positionDescription">Position Description</label>
+                <input
+                    placeholder="Enter psotion description"
+                    type="text"
+                    class="form-control"
+                    id="positionDescription"
+                    required
+                    [(ngModel)]="joblisting.positionDescription"
+                    name="positionDescription"
+                />
+            </div>
+            <div class="form-group">
+              <app-qualification (qualificationSelectedEvent)="receiveQualificationSelectedEvent($event)"></app-qualification>
+            </div>
+            <div class="form-group">
+                <app-location (locationSelectedEvent)="receiveLocationSelectedEvent($event)"></app-location>
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary</label>
+                <input
+                    placeholder="Enter salary"
+                    type="number"
+                    class="form-control"
+                    id="salary"
+                    required
+                    [(ngModel)]="joblisting.salary"
+                    name="salary"
+                />
+            </div>
+          </div>
+          <div class="col-md-6"> 
+            <h1 align="center">Job Listing Skills</h1>
+            <br>
+            <div class="list row" >
+                <div class="col-md-6">
+                    <div class="form-group" align="center">
+                        <app-skill 
+                        [selectedSkill]="hasSelectedSkill" 
+                        (skillSelectedEvent)="receiveSkillSelectedEvent($event)"></app-skill>
+                    </div>
+                </div>
+            
+                <div class="col-md-6">
+                    <div class="form-group" align="center">
+                        <app-rating (ratingSelectedEvent)="receiveRatingSelectedEvent($event)"></app-rating>
+                    </div>
+                </div>
+  
+            </div>
+            <div class="col-md-12">
+            <button (click)="addJoblistingSkill()" class="btn btn-success">Add</button>
+            </div>
+            <div class="col-md-12">
+                <div *ngFor="let joblistingSkill of joblistingSkills" class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{joblistingSkill.skill?.skill}}</strong> ({{joblistingSkill.rating?.rating}})
+                    <button 
+                        [attr.data-skill]="joblistingSkill.skill?.id" 
+                        [attr.data-rating]="joblistingSkill.rating?.id" 
+                        type="button" 
+                        class="close" 
+                        data-dismiss="alert" 
+                        aria-label="Close"
+                        (click)="removeJoblistingSkill($event)">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+            </div>
+          </div>
+        </div>
+        <button (click)="saveJoblisting()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted" align="center">
+        <h4>Joblisting was submitted successfully!</h4>
+        <button class="btn btn-success" routerLink="/joblistings">View joblistings</button> &nbsp; 
+        <button class="btn btn-success" (click)="newJoblisting()">Add joblisting</button>
+      </div>
+    </div>
+  </div>
+  

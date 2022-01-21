@@ -1,0 +1,135 @@
+<div class="submit-form">
+    <div class="list row">
+        <div class="col-md-6" *ngIf="!submitted">
+            <h1 align="center">Applicant Details</h1>
+            <br>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input
+                        placeholder="Enter first name"
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        required
+                        [(ngModel)]="applicant.firstName"
+                        name="firstName"
+                    />
+                </div>
+            
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input
+                        placeholder="Enter last name"
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        required
+                        [(ngModel)]="applicant.lastName"
+                        name="lastName"
+                    />
+                </div>
+            
+                <div class="form-group">
+                    <label for="mobile">Mobile</label>
+                    <input
+                        placeholder="Enter mobile number"
+                        type="text"
+                        class="form-control"
+                        id="mobile"
+                        required
+                        [(ngModel)]="applicant.mobile"
+                        name="mobile"
+                    />
+                </div>
+            
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        placeholder="Enter email address"
+                        type="text"
+                        class="form-control"
+                        id="email"
+                        required
+                        [(ngModel)]="applicant.email"
+                        name="email"
+                    />
+                </div>
+            
+                <div class="form-group">
+                    <app-gender (genderSelectedEvent)="receiveGenderSelectedEvent($event)"></app-gender>
+                </div>
+            
+                <div class="form-group">
+                    <app-position (positionSelectedEvent)="receivePositionSelectedEvent($event)"></app-position>
+                </div>
+            
+                <div class="form-group">
+                    <app-qualification (qualificationSelectedEvent)="receiveQualificationSelectedEvent($event)"></app-qualification>
+                </div>
+            
+                <div class="form-group">
+                    <app-location (locationSelectedEvent)="receiveLocationSelectedEvent($event)"></app-location>
+                </div>
+            
+                <div class="form-group">
+                    <label for="salary">Salary</label>
+                    <input
+                    placeholder="Enter salary amount"
+                    type="number"
+                    class="form-control"
+                    id="salary"
+                    required
+                    [(ngModel)]="applicant.salary"
+                    name="salary"
+                    />
+                </div>
+            
+                <button (click)="saveApplicant()" class="btn btn-success">Submit</button>
+        </div>
+        <div class="col-md-6" *ngIf="!submitted"> 
+            <h1 align="center">Applicant Skills</h1>
+            <br>
+            <div class="list row" >
+                <div class="col-md-6">
+                    <div class="form-group" align="center">
+                        <app-skill 
+                        [selectedSkill]="hasSelectedSkill" 
+                        (skillSelectedEvent)="receiveSkillSelectedEvent($event)"></app-skill>
+                    </div>
+                </div>
+            
+                <div class="col-md-6">
+                    <div class="form-group" align="center">
+                        <app-rating (ratingSelectedEvent)="receiveRatingSelectedEvent($event)"></app-rating>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12">
+            <button (click)="addApplicantSkill()" class="btn btn-success">Add</button>
+            </div>
+            <div class="col-md-12">
+                <div *ngFor="let applicantSkill of applicantSkills" class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{applicantSkill.skill?.skill}}</strong> ({{applicantSkill.rating?.rating}})
+                    <button 
+                        [attr.data-skill]="applicantSkill.skill?.id" 
+                        [attr.data-rating]="applicantSkill.rating?.id" 
+                        type="button" 
+                        class="close" 
+                        data-dismiss="alert" 
+                        aria-label="Close"
+                        (click)="removeApplicantSkill($event)">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="submitted" align="center">
+        <h4>Applicant was submitted successfully!</h4>
+        <button class="btn btn-success" routerLink="/applicants">View applicants</button> &nbsp; 
+        <button class="btn btn-success" (click)="newApplicant()">Add applicant</button>
+    </div>
+</div>
+  
